@@ -1,8 +1,6 @@
 package main
 
 import (
-	"./dataWriterClient"
-	"./dataproducer"
 	"fmt"
 	"testing"
 	"time"
@@ -10,7 +8,7 @@ import (
 
 func Test_program_calls_connect_once(t *testing.T) {
 	client := MockClient{}
-	dataProducer := dataproducer.RandomDataProducer{}
+	dataProducer := MockDataProducer{}
 
 	go Program(&client, &dataProducer)
 	time.Sleep(1 * time.Microsecond)
@@ -21,7 +19,7 @@ func Test_program_calls_connect_once(t *testing.T) {
 }
 
 func Test_program_calls_GiveData_AtLeastOnce(t *testing.T) {
-	client := dataWriterClient.StubClient{}
+	client := MockClient{}
 	dataProducer := MockDataProducer{}
 
 	go Program(&client, &dataProducer)

@@ -3,16 +3,17 @@ package main
 import (
 	"./dataWriterClient"
 	"./dataproducer"
-	"fmt"
 	"time"
 )
 
 func main() {
-	fmt.Println("Hiiii")
+	dataProducer := dataproducer.NewRandomDataProducer()
+	client := dataWriterClient.StubClient{}
+	Program(&client, &dataProducer)
 }
 
 func Program(client dataWriterClient.Client, dataProducer dataproducer.DataProducer) {
-	client.Connect("someplace")
+	client.Connect("http://localhost")
 	for true {
 		client.SendData(dataProducer.GiveData())
 		time.Sleep(0)

@@ -1,5 +1,7 @@
 package dataWriterClient
 
+import "fmt"
+
 type Client interface {
 	Connect(url string)
 	SendData(data int)
@@ -10,8 +12,10 @@ type StubClient struct {
 	NCalls int64
 }
 
-func (s *StubClient) Connect(_ string) {
+func (s *StubClient) Connect(url string) {
+	fmt.Printf("Connected to %s\n", url)
 }
 
-func (s *StubClient) SendData(_ int) {
+func (s *StubClient) SendData(data int) {
+	fmt.Printf("Data sent: %d\n", data)
 }

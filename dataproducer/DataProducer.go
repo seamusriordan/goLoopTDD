@@ -1,7 +1,9 @@
 package dataproducer
 
 import (
+	"fmt"
 	"math/rand"
+	"time"
 )
 
 type DataProducer interface {
@@ -11,6 +13,13 @@ type DataProducer interface {
 type RandomDataProducer struct {
 }
 
+func NewRandomDataProducer() RandomDataProducer {
+	rand.Seed(time.Now().Unix())
+	return RandomDataProducer{}
+}
+
 func (r RandomDataProducer) GiveData() int {
-	return rand.Intn(7)
+	data := rand.Intn(7)
+	fmt.Printf("Data produced: %d\n", data)
+	return data
 }
